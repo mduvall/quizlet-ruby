@@ -10,7 +10,7 @@ module Quizlet
   CONNECTION_OPTIONS = {
     headers: {
       accept: 'application/json',
-      user_agent: 'curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5'
+      user_agent: 'quizlet-ruby client'
     },
     builder: DEFAULT_BUILDER,
   }
