@@ -1,7 +1,13 @@
 module Quizlet
   class << self
+    # Not the place to put this...duplicated
+    def configure(opts)
+      @access_token = opts[:access_token]
+      @client_id = opts[:client_id]
+    end
+
     def client
-      @client = Quizlet::Client.new
+      @client = Quizlet::Client.new({access_token: @access_token, client_id: @client_id})
       @client
     end
 
