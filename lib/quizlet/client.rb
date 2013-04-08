@@ -3,16 +3,11 @@ require 'faraday_middleware'
 require 'json'
 
 module Quizlet
-  DEFAULT_BUILDER = Faraday::Builder.new do |b|
-    b.adapter Faraday.default_adapter
-  end
-
   CONNECTION_OPTIONS = {
     headers: {
       accept: 'application/json',
       user_agent: 'quizlet-ruby client'
-    },
-    builder: DEFAULT_BUILDER,
+    }
   }
 
   class Client
@@ -48,7 +43,9 @@ module Quizlet
 
     def connection
       @connection ||= Faraday.new('https://api.quizlet.com/2.0', CONNECTION_OPTIONS) do |conn|
+        conn.request :url_encoded
         conn.authorization :Bearer, access_token
+        conn.adapter Faraday.default_adapter
       end
     end
   end

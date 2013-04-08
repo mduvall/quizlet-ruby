@@ -28,5 +28,10 @@ module Quizlet
     def favorite_sets_by_user_id(user_id)
       get('users/' + user_id.to_s + '/favorites', {})
     end
+
+    # Params requires {title, terms[], definitions[], lang_terms, lang_definitions}
+    def add_set(params)
+      post('sets', params)
+    end
   end
 end
