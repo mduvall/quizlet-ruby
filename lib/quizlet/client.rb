@@ -38,7 +38,12 @@ module Quizlet
 
     def request(action, endpoint, params)
       res = connection.send(action, endpoint, params).env
-      JSON.parse res[:body]
+
+      if res[:body] && res[:body] != ''
+        JSON.parse res[:body]
+      else
+        {status: res[:status]}
+      end
     end
 
     def connection
